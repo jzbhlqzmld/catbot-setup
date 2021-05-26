@@ -14,3 +14,8 @@ ipcserver=$( ps faux | grep '/opt/cathook/ipc/bin/server' | grep -vw grep | awk 
 [ ! -z "$ipcserver" ] && sudo kill ${ipcserver};
 ipcconsole=$( ps faux | grep '/opt/cathook/ipc/bin/console' | grep -vw grep | awk '{ print $2 }' );
 [ ! -z "$ipcconsole" ] && sudo kill ${ipcconsole};
+
+ipcserver=$( ps faux | grep '/opt/cathook/ipc/bin/server' | grep -vw grep | awk '{ print $2 }' );
+[ ! -z "$ipcserver" ] && sudo kill -9 ${ipcserver};
+ipcconsole=$( ps faux | grep '/opt/cathook/ipc/bin/console' | grep -vw grep | awk '{ print $2 }' );
+[ ! -z "$ipcconsole" ] && sudo kill -9 ${ipcconsole};
