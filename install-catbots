@@ -116,7 +116,7 @@ sudo cp bots.conf /opt/cathook/data/configs/bots.conf
 sudo chmod 777 /opt/cathook/data/configs/bots.conf
 sudo chown $(whoami):$(whoami) /opt/cathook/data/configs/bots.conf
 
-catconfig="~/.steam/steam/steamapps/common/'Team Fortress 2'/tf/cfg/cat_autoexec_textmode.cfg"
+catconfig="~/.steam/steam/steamapps/common/Team\ Fortress\ 2/tf/cfg/cat_autoexec_textmode.cfg"
 if [[ -f $catconfig ]]; then
     echo "Found Steam directory. Installing bot config..."
     echo "cat_load bots" >> $catconfig
