@@ -1,9 +1,5 @@
 #!/bin/bash
 
-#
-#       This script starts IPC server, account generator, etc..
-#
-
 if [ $EUID == 0 ]; then
     echo "This script must not be run as root"
     exit
@@ -31,6 +27,6 @@ fi
 
 sleep 5;
 
-echo "IPC Web Panel password: `cat /tmp/cat-webpanel-password`"
-echo "Fixing NVIDIA crash"
+echo "You can login from here: http://[::1]:8081/"
+echo "With password: `cat /tmp/cat-webpanel-password`"
 sudo chmod 700 /opt/steamapps/common/Team\ Fortress\ 2/tf/glshaders.cfg
