@@ -112,9 +112,21 @@ if [ ! -d "./cathook-ipc-web-panel/logs" ]; then
     touch ./cathook-ipc-web-panel/logs/main.log
 fi
 
+sudo cp bots.conf /opt/cathook/data/configs/bots.conf
+sudo chmod 777 /opt/cathook/data/configs/bots.conf
+sudo chown $(whoami):$(whoami) /opt/cathook/data/configs/bots.conf
+
+catconfig="~/.steam/steam/steamapps/common/'Team Fortress 2'/tf/cfg/cat_autoexec_textmode.cfg"
+if [[ -f $catconfig ]]; then
+    echo "Found Steam directory. Installing bot config..."
+    echo "cat_load bots" >> $catconfig
+else
+    echo "Unable to find cathook's autoexec config file. You need to append this line (cat_load bots) yourself inside steam/steamapps/common/Team Fortress 2/tf/cfg/cat_autoexec_textmode.cfg file for IPC bots to work."
+fi
+
 sudo sed -i 's/^restricted-network yes/# restricted-network yes/g' /etc/firejail/firejail.config
 
-echo "Installation finished. Please ensure that all navmashes are inside your map folder (see https://github.com/nullworks/cathook/catbot-database)."
+echo "Installation finished. Please ensure that all navmashes are inside your map folder (see https://github.com/nullworks/catbot-database)."
 echo
 echo "The web-panel and account storage can be started with ./start"
 echo
