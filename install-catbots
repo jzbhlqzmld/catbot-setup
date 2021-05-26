@@ -18,23 +18,41 @@ if ! [ -d ".git" ]; then
     exit
 fi
 
+if [ -f /usr/bin/apt-get ]; then
+    echo "Aptitude detected. Attempting automatic installation of required dependencies..."
+    sudo apt-get install curl nodejs firejail net-tools x11-xserver-utils -y
+    echo "Installing latest version of NodeJS..." # Ubuntu has NodeJS 8 on their official repos bruh
+    curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -
+    sudo apt-get install nodejs -y
+fi
+
+if [ -f /usr/bin/dnf ]; then
+    echo "Dandified yum detected. Attempting automatic installation of required dependencies..."
+    sudo dnf install curl nodejs firejail net-tools xorg-x11-server-utils -y
+fi
+
+if [ -f /usr/bin/pacman ]; then
+    echo "Pacman detected. Attempting automatic installation of required dependencies..."
+    sudo pacman -Syu curl nodejs npm firejail net-tools xorg-xhost
+fi
+
 if [ ! -x "$(command -v touch)" ]; then
     echo "Touch doesn't exist. Please install it. (touch)"
     exit
 fi
 
 if [ ! -x "$(command -v route)" ] && [ ! -x /sbin/route ]; then
-    echo "Route doesn't exist. Please install it. (net-tools)"
+    echo "Perhaps auto install failed :( Route doesn't exist. Please install it manually. (net-tools)"
     exit
 fi
 
 if [ ! -x "$(command -v npm)" ]; then
-    echo "NPM doesn't exist. Please install it. (npm)"
+    echo "Perhaps auto install failed :( NPM doesn't exist. Please install it manually. (npm)"
     exit
 fi
 
 if [ ! -x "$(command -v firejail)" ]; then
-    echo "Firejail doesn't exist. Please install it. (firejail)"
+    echo "Perhaps auto install failed :( Firejail doesn't exist. Please install it manually. (firejail)"
     exit
 fi
 
@@ -130,5 +148,5 @@ echo "Installation finished. Please ensure that all navmashes are inside your ma
 echo
 echo "The web-panel and account storage can be started with ./start"
 echo
-echo "Accgen is broken due to recent recaptcha updates, as well as us running out of accounts to provide. You must create your own list of accounts to use for catbots."
-echo "Create a list of steam accounts, and save them to catbot-setup/accounts.txt in username:password format."
+echo "Now you need to navigate to https://accgen.cathook.club to create accounts."
+echo "Create a list of steam accounts from there, and save them to catbot-setup/accounts.txt in username:password format."
