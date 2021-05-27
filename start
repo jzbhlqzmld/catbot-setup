@@ -10,7 +10,7 @@ if ! [ -d "./user_instances" ]; then
 	exit
 fi
 
-if ! [ -d "./accounts.txt" ]; then
+if ! [ -f "./accounts.txt" ]; then
 	echo "accounts.txt is missing. Are you aware of this? Perhaps you forgot creating Steam accounts from https://accgen.cathook.club"
 	exit
 fi
