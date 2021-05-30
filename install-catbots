@@ -165,6 +165,7 @@ else
     echo "Unable to find cathook's autoexec config file. You need to append this line (cat_load bots) yourself inside steam/steamapps/common/Team Fortress 2/tf/cfg/cat_autoexec_textmode.cfg file for IPC bots to work."
 fi
 
+chmod 755 ./state-api.py
 sudo sed -i 's/^restricted-network yes/# restricted-network yes/g' /etc/firejail/firejail.config
 
 echo "Installation finished. Please ensure that all navmashes are inside your map folder (see https://github.com/nullworks/catbot-database)."
