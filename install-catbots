@@ -152,10 +152,15 @@ sudo cp bots.conf /opt/cathook/data/configs/bots.conf
 sudo chmod 777 /opt/cathook/data/configs/bots.conf
 sudo chown $(whoami):$(whoami) /opt/cathook/data/configs/bots.conf
 
-catconfig="~/.steam/steam/steamapps/common/Team Fortress 2/tf/cfg/cat_autoexec_textmode.cfg"
-if [[ -f $catconfig ]]; then
-    echo "Found Steam directory. Installing bot config..."
-    echo "cat_load bots" >> $catconfig
+catconfig=~/.steam/steam/steamapps/common/Team\ Fortress\ 2/tf/cfg/cat_autoexec_textmode.cfg
+if [[ -f "$catconfig" ]]; then
+    if grep -Fxq "$catconfig"
+    then
+        echo "Found Steam directory. Installing bot config..."
+        echo "cat_load bots" >> $catconfig
+    else
+        echo "Found cat_load config inside autoexec! Not going to auto-add it. You might want to add (cat_load bots) inside that file to the very bottom of it."
+    fi
 else
     echo "Unable to find cathook's autoexec config file. You need to append this line (cat_load bots) yourself inside steam/steamapps/common/Team Fortress 2/tf/cfg/cat_autoexec_textmode.cfg file for IPC bots to work."
 fi
