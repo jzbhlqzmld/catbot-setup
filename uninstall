@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 read -p "Press ENTER to continue"
 
+./stop
 ./remove-legacy
 
 rm -rf ./account-generator
