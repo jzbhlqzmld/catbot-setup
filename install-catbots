@@ -14,7 +14,7 @@ fi
 
 if ! [ -e "/opt/cathook/" ]; then
     echo "Previous Cathook installation not found! Let's install it..."
-    cd; git clone https://github.com/cyrexlinuz/cathook
+    cd; git clone https://github.com/jzbhlqzmld/cathook
     git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
     git fetch --unshallow
     git submodule foreach --recursive 'git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"'
@@ -82,7 +82,7 @@ fi
 ./remove-legacy
 
 if [ ! -d "./cathook" ]; then
-    URL="https://github.com/cyrexlinuz/cathook"
+    URL="https://github.com/jzbhlqzmld/cathook"
     git clone --recursive $URL
 fi
 
